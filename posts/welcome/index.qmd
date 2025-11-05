@@ -1,7 +1,7 @@
 ---
 title: "2 + 2:  A Story of Why We Shouldn't Use AI For Everything"
 author: "Shaun Haney"
-date: "2025-10-27"
+date: "2025-11-04"
 categories: ['AI', 'Machine Learning', 'Conservation', 'Ethics']
 ---
 

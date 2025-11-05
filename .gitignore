@@ -1,1 +1,3 @@
 /emissions.csv
+/.quarto/
+**/*.quarto_ipynb

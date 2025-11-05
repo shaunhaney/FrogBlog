@@ -6,10 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Shaun Haney">
-<meta name="dcterms.date" content="2025-10-27">
+<meta name="author" content="Harlow Malloc">
+<meta name="dcterms.date" content="2025-10-26">
 
-<title>2 + 2: A Story of Why We Shouldn’t Use AI For Everything – FrogBlog</title>
+<title>Post With Code – FrogBlog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,41 +21,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -154,12 +119,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">2 + 2: A Story of Why We Shouldn’t Use AI For Everything</h1>
+      <h1 class="title">Post With Code</h1>
                                 <div class="quarto-categories">
-                <div class="quarto-category">AI</div>
-                <div class="quarto-category">Machine Learning</div>
-                <div class="quarto-category">Conservation</div>
-                <div class="quarto-category">Ethics</div>
+                <div class="quarto-category">news</div>
+                <div class="quarto-category">code</div>
+                <div class="quarto-category">analysis</div>
               </div>
                   </div>
   </div>
@@ -170,14 +134,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div>
       <div class="quarto-title-meta-heading">Author</div>
       <div class="quarto-title-meta-contents">
-               <p>Shaun Haney </p>
+               <p>Harlow Malloc </p>
             </div>
     </div>
       
       <div>
       <div class="quarto-title-meta-heading">Published</div>
       <div class="quarto-title-meta-contents">
-        <p class="date">October 27, 2025</p>
+        <p class="date">October 26, 2025</p>
       </div>
     </div>
     
@@ -196,74 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>A few days ago, a former coworker on LinkedIn posed the question, “Why are we using AI to generate code? Why don’t let AI be the code?” A lot of our use of agentic AI does just that, acting on instructions either directly from us in the form of prompts or from its internal data. But I would like to look at this question from a much simpler perspective to argue that there are some tasks handled so much more efficiently by traditional programs and that we should never be handing those tasks directly to AI. When I speak of AI in this post, I am referring to LLMs like GPT and more generally, transformers.</p>
-<p>I’ve decided to show my answer to this question by comparing the carbon footprint of calculating 2+2 in a traditional computer program to asking a model to do the job. I use a class called EmissionsTracker from a library called CodeCarbon to track how much compute power it takes to run each scenario. The indented code after the statement <code>with EmissionsTracker as tracker:</code> is what is being measured.<br>
-2 + 2 is pretty atomic in terms of operations. It can usually be written as approximately 4 statements in assembler, a language just one level above machine language, where you load 2 into 2 registers, perform an add operation, and store it in another register. Even on primitive processors, it takes nanoseconds and barely registers any measurable energy expenditure.<br>
-If you’re a computer scientist familiar with interpreters, you know that between assembler and Python, a lot more happens in between as the interface between Python and the machine has more layers of complexity and requires more energy.<br>
-The code segment below estimates the amount of energy required to run the statement <code>a=2+2</code> in Python.</p>
-<div id="02b6a815" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> codecarbon <span class="im">import</span> EmissionsTracker</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the tracker</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> EmissionsTracker() <span class="im">as</span> tracker:</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Simple statement that calculates 2+2 and stores it in a variable</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    a<span class="op">=</span><span class="dv">2</span><span class="op">+</span><span class="dv">2</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"2+2=</span><span class="sc">{</span>a<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>traditional_emissions <span class="op">=</span> tracker.final_emissions_data.emissions <span class="op">*</span> <span class="dv">1_000_000_000</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Traditional Program → </span><span class="sc">{</span>traditional_emissions<span class="sc">:.2f}</span><span class="ss"> µg CO₂e"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>2+2=4
-Traditional Program → 4.92 µg CO₂e</code></pre>
-</div>
-</div>
-<p>As you might expect, asking a model to add 2+2 together takes quite a bit more energy, but how much exactly? In this segment, we calculate the forward pass through GPT2. GPT2 is a predecessor to the current GPT5 model. GPT2 acts more like autocomplete and does not process instructions in the same way that GPT3 and later models do. The reason I’ve chosen this model here is because it is small enough to run locally, yet still big enough to demonstrate my point. With each new version of GPT, the models have generally grown, scaling with a multitude more parameters and thus more calculations. While a traditional program ultimately calculates 2+2 as a single microprocessor operation, models act as statistical predictors, performing thousands to millions of addition operations during the forward pass to predict the answer to 2+2.</p>
-<div id="c53ee402" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> codecarbon <span class="im">import</span> EmissionsTracker</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoTokenizer, AutoModelForCausalLM</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>model_name <span class="op">=</span> <span class="st">"gpt2"</span>                 </span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>tokenizer <span class="op">=</span> AutoTokenizer.from_pretrained(model_name)</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> AutoModelForCausalLM.from_pretrained(model_name)</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Track emissions for the inference ----</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>prompt <span class="op">=</span> <span class="st">"2 + 2 ="</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> EmissionsTracker() <span class="im">as</span> tracker:</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># inputs need to first be tokenized</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>    inputs <span class="op">=</span> tokenizer(prompt, return_tensors<span class="op">=</span><span class="st">"pt"</span>)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Forward pass through GPT2</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> model.generate(</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        <span class="op">**</span>inputs,</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        max_new_tokens<span class="op">=</span><span class="dv">10</span>,</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        do_sample<span class="op">=</span><span class="va">False</span>,</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        temperature<span class="op">=</span><span class="fl">0.0</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    new_text <span class="op">=</span> tokenizer.decode(</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>        outputs[<span class="dv">0</span>][inputs.input_ids.shape[<span class="dv">1</span>]:],</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        skip_special_tokens<span class="op">=</span><span class="va">True</span></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"2 + 2 ="</span>, new_text.strip())</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a><span class="co"># ---- Convert to micrograms CO₂e for readability ----</span></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>model_emissions <span class="op">=</span> tracker.final_emissions_data.emissions <span class="op">*</span> <span class="dv">1_000_000_000</span></span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Prompting a model → </span><span class="sc">{</span>model_emissions<span class="sc">:.2f}</span><span class="ss"> µg CO₂e"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>2 + 2 = 3.5 + 3.5 + 3.
-Prompting a model → 3088.54 µg CO₂e</code></pre>
-</div>
-</div>
-<p>So, what I want you to notice here is how much significantly higher the estimated carbon emissions are for the model run. I was actually hoping GPT2 would produce the answer 4 as well, since “2 + 2 = 4” is or should be a fairly common piece of online text. GPT2 is predicting the next token differently, and it should be noted, is not calculating 2+2 at all. That’s not what LLMs do unless they delegate the task out to tooling. On the other hand, if you were to ask GPT5 what 2+2 is, it would predict 4 for you without an issue. But the question I am asking here is, “But at what cost?” Possiby enough energy to make a light bulb flash. That difference in energy expenditure points to AI being a significant contributor to climate change and global warming when the electricity is generated using coal and fossil fuels.<br>
-The next code block prints how much more energy AI uses for the 2+2 operation over traditional code.</p>
-<div id="e934bacd" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Using GPT2 to answer 2+2 generates </span><span class="sc">{</span>model_emissions<span class="op">/</span>traditional_emissions<span class="sc">:.0f}</span><span class="ss"> times as much CO₂ as calculating 2+2 in Python."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Using GPT2 to answer 2+2 generates 628 times as much CO₂ as calculating 2+2 in Python.</code></pre>
-</div>
-</div>
-<p>So, my argument is not to stop using AI. AI is already widely used and adopted. However, considering how widely AI is used and what its capabilities are, I think it is a smart decision to have AI use traditional programs as tooling, whether AI generates those programs and uses them directly or humans help develop those programs. This approach to tooling, rather than trying to use AI as the only tool will help mitigate AI’s contribution to climate change.</p>
+<p>This is a post with executable code.</p>
 
 
 
@@ -341,7 +238,7 @@ The next code block prints how much more energy AI uses for the 2+2 operation ov
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/your-website-url\.example\.com");
+        var filterRegex = new RegExp("https:\/\/shaunhaney\.github\.io");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
