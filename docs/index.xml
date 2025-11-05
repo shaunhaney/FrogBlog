@@ -14,7 +14,7 @@
 <item>
   <title>2 + 2: A Story of Why We Shouldn’t Use AI For Everything</title>
   <dc:creator>Shaun Haney</dc:creator>
-  <link>https://shaunhaney.github.io/posts/welcome/</link>
+  <link>https://shaunhaney.github.io/posts/2+2/</link>
   <description><![CDATA[ 
 
 
@@ -26,7 +26,7 @@
 2 + 2 is pretty atomic in terms of operations. It can usually be written as approximately 4 statements in assembler, a language just one level above machine language, where you load 2 into 2 registers, perform an add operation, and store it in another register. Even on primitive processors, it takes nanoseconds and barely registers any measurable energy expenditure.<br>
 If you’re a computer scientist familiar with interpreters, you know that between assembler and Python, a lot more happens in between as the interface between Python and the machine has more layers of complexity and requires more energy.<br>
 The code segment below estimates the amount of energy required to run the statement <code>a=2+2</code> in Python.</p>
-<div id="d27e06c2" class="cell" data-execution_count="2">
+<div id="1cc67e46" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> codecarbon <span class="im" style="color: #00769E;
@@ -92,11 +92,11 @@ background-color: null;
 font-style: inherit;"> µg CO₂e"</span>)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>2+2=4
-Traditional Program → 6.71 µg CO₂e</code></pre>
+Traditional Program → 8.88 µg CO₂e</code></pre>
 </div>
 </div>
 <p>As you might expect, asking a model to add 2+2 together takes quite a bit more energy, but how much exactly? In this segment, we calculate the forward pass through GPT2. GPT2 is a predecessor to the current GPT5 model. GPT2 acts more like autocomplete and does not process instructions in the same way that GPT3 and later models do. The reason I’ve chosen this model here is because it is small enough to run locally, yet still big enough to demonstrate my point. With each new version of GPT, the models have generally grown, scaling with a multitude more parameters and thus more calculations. While a traditional program ultimately calculates 2+2 as a single microprocessor operation, models act as statistical predictors, performing thousands to millions of addition operations during the forward pass to predict the answer to 2+2.</p>
-<div id="01f66653" class="cell" data-execution_count="3">
+<div id="355a5fc5" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> codecarbon <span class="im" style="color: #00769E;
@@ -213,12 +213,12 @@ background-color: null;
 font-style: inherit;"> µg CO₂e"</span>)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>2 + 2 = 3.5 + 3.5 + 3.
-Prompting a model → 3019.79 µg CO₂e</code></pre>
+Prompting a model → 2937.95 µg CO₂e</code></pre>
 </div>
 </div>
 <p>So, what I want you to notice here is how much significantly higher the estimated carbon emissions are for the model run. I was actually hoping GPT2 would produce the answer 4 as well, since “2 + 2 = 4” is or should be a fairly common piece of online text. GPT2 is predicting the next token differently, and it should be noted, is not calculating 2+2 at all. That’s not what LLMs do unless they delegate the task out to tooling. On the other hand, if you were to ask GPT5 what 2+2 is, it would predict 4 for you without an issue. But the question I am asking here is, “But at what cost?” Possiby enough energy to make a light bulb flash. That difference in energy expenditure points to AI being a significant contributor to climate change and global warming when the electricity is generated using coal and fossil fuels.<br>
 The next code block prints how much more energy AI uses for the 2+2 operation over traditional code.</p>
-<div id="8c259af0" class="cell" data-execution_count="4">
+<div id="4fbd2e20" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
@@ -233,7 +233,7 @@ font-style: inherit;">:.0f}</span><span class="ss" style="color: #20794D;
 background-color: null;
 font-style: inherit;"> times as much CO₂ as calculating 2+2 in Python."</span>)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Using GPT2 to answer 2+2 generates 450 times as much CO₂ as calculating 2+2 in Python.</code></pre>
+<pre><code>Using GPT2 to answer 2+2 generates 331 times as much CO₂ as calculating 2+2 in Python.</code></pre>
 </div>
 </div>
 <p>So, my argument is not to stop using AI. AI is already widely used and adopted. However, considering how widely AI is used and what its capabilities are, I think it is a smart decision to have AI use traditional programs as tooling, whether AI generates those programs and uses them directly or humans help develop those programs. This approach to tooling, rather than trying to use AI as the only tool will help mitigate AI’s contribution to climate change.</p>
@@ -245,30 +245,8 @@ font-style: inherit;"> times as much CO₂ as calculating 2+2 in Python."</span>
   <category>Machine Learning</category>
   <category>Conservation</category>
   <category>Ethics</category>
-  <guid>https://shaunhaney.github.io/posts/welcome/</guid>
+  <guid>https://shaunhaney.github.io/posts/2+2/</guid>
   <pubDate>Tue, 04 Nov 2025 08:00:00 GMT</pubDate>
-</item>
-<item>
-  <title>Post With Code</title>
-  <dc:creator>Harlow Malloc</dc:creator>
-  <link>https://shaunhaney.github.io/posts/post-with-code/</link>
-  <description><![CDATA[ 
-
-
-
-
-
-<p>This is a post with executable code.</p>
-
-
-
- ]]></description>
-  <category>news</category>
-  <category>code</category>
-  <category>analysis</category>
-  <guid>https://shaunhaney.github.io/posts/post-with-code/</guid>
-  <pubDate>Sun, 26 Oct 2025 07:00:00 GMT</pubDate>
-  <media:content url="https://shaunhaney.github.io/posts/post-with-code/image.jpg" medium="image" type="image/jpeg"/>
 </item>
 </channel>
 </rss>
