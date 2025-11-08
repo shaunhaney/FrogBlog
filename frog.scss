@@ -1,0 +1,101 @@
+/* === Frog Theme for Quarto ===
+   Vibrant greens, clear skies, plant tones
+   Author: Shaun Haney
+   --------------------------------------- */
+
+/* Import one of Quarto's base themes to inherit good typography defaults */
+@import "default";
+
+/* ---------- Fonts ---------- */
+$font-family-sans-serif: "Source Sans Pro", "Inter", "Segoe UI", system-ui, sans-serif;
+$font-family-monospace: "Fira Code", "Courier New", monospace;
+
+/* ---------- Color Palette ---------- */
+$body-bg: #f4fff7;              /* gentle light-green wash */
+$body-color: #202d23;           /* deep plant green for text */
+$link-color: #157347;           /* frog-leg green */
+$link-hover-color: #104d33;     /* darker hover */
+$navbar-bg: #165c27;            /* rich frog-pond green */
+$navbar-fg: #e6ffe6;
+$footer-bg: #e8f9ef;            /* pale mint */
+$code-bg: #e9f8f0;
+$code-color: #153b22;
+$heading-color: #114422;
+$border-color: #b2e4c0;
+
+/* ---------- Accent Colors ---------- */
+$primary: #26a269;              /* vibrant frog green */
+$secondary: #49c2ff;            /* sky water blue */
+$success: #78d083;              /* plant growth tone */
+$info: #57b0e6;
+$warning: #e6d557;
+$danger: #ce4e32;
+
+/* ---------- Typography tweaks ---------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Merriweather", "Georgia", serif;
+  color: $heading-color;
+  font-weight: 700;
+}
+
+blockquote {
+  border-left: 4px solid $primary;
+  background: #e9f8f0;
+  padding: 0.8em 1em;
+  font-style: italic;
+}
+
+/* ---------- Code + callouts ---------- */
+pre, code {
+  background-color: $code-bg;
+  color: $code-color;
+  font-family: $font-family-monospace;
+}
+
+.callout {
+  border-left: 4px solid $primary;
+  background-color: #f1fbf6;
+}
+
+/* ---------- Links & buttons ---------- */
+a {
+  color: $link-color;
+  text-decoration: none;
+}
+a:hover {
+  color: $link-hover-color;
+  text-decoration: underline;
+}
+
+/* ---------- Subtle crosshair hover effect ---------- */
+body {
+  background-image: radial-gradient(circle at center, transparent 0%, transparent 90%, rgba(0,0,0,0.04) 100%);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+main:hover::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background-image: 
+    linear-gradient(to right, rgba(18,60,34,0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(18,60,34,0.1) 1px, transparent 1px);
+  background-size: 100% 100%;
+}
+
+/* side bars */
+
+.sidebar-note {
+  font-family: Arial, Tahoma, sans-serif;
+  font-weight: bold;
+  background: linear-gradient(180deg, #fff89a 0%, #fff27d 100%); /* soft sticky-note yellow */
+  border: 1px solid #c00; /* thin red border */
+  border-radius: 20px;
+  box-shadow: inset 0 1px 0 #fff, 0 2px 4px rgba(0, 0, 0, 0.2); /* beveled + slight lift */
+  padding: 1em;
+  margin: 1em 0;
+  color: #333;
+}

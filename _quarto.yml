@@ -3,22 +3,21 @@ project:
   output-dir: docs
 
 website:
-  description: "A blog built with Quarto"
+  description: "Toddling through AI and looking for the staircase"
   site-url: https://shaunhaney.github.io # you must change this appropriately for RSS feeds to work properly
   title: "FrogBlog"
   navbar:
     right:
       - about.qmd
       - icon: github
-        href: https://github.com/
-      - icon: twitter
-        href: https://twitter.com
+        href: https://github.com/shaunhaney
 format:
   html:
+    title-block-banner: images/banner.jpg
     theme:
-      - cosmo
       - brand
-    css: styles.css
-
+    css:
+      - frog.scss
+      - styles.css
 
 
