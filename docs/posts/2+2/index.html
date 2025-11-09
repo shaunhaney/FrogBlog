@@ -204,7 +204,7 @@ background-size: cover;
 2 + 2 is pretty atomic in terms of operations. It can usually be written as approximately 4 statements in assembler, a language just one level above machine language, where you load 2 into 2 registers, perform an add operation, and store it in another register. Even on primitive processors, it takes nanoseconds and barely registers any measurable energy expenditure.<br>
 If you’re a computer scientist familiar with interpreters, you know that between assembler and Python, a lot more happens in between as the interface between Python and the machine has more layers of complexity and requires more energy.<br>
 The code segment below estimates the amount of energy required to run the statement <code>a=2+2</code> in Python.</p>
-<div id="377b9019" class="cell" data-execution_count="2">
+<div id="09e93cb8" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> codecarbon <span class="im">import</span> EmissionsTracker</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">0</span></span>
@@ -219,11 +219,11 @@ The code segment below estimates the amount of energy required to run the statem
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Traditional Program → </span><span class="sc">{</span>traditional_emissions<span class="sc">:.2f}</span><span class="ss"> µg CO₂e"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>2+2=4
-Traditional Program → 4.49 µg CO₂e</code></pre>
+Traditional Program → 12.41 µg CO₂e</code></pre>
 </div>
 </div>
 <p>As you might expect, asking a model to add 2+2 together takes quite a bit more energy, but how much exactly? In this segment, we calculate the forward pass through GPT2. GPT2 is a predecessor to the current GPT5 model. GPT2 acts more like autocomplete and does not process instructions in the same way that GPT3 and later models do. The reason I’ve chosen GPT2 is because it is small enough to run locally, yet still big enough to show a few orders of magnitude difference in carbon emmissions when compared with running a traditional program. With each new version of GPT, the models have generally grown, scaling with a multitude more parameters and thus more calculations. While a traditional program ultimately calculates 2+2 as a single microprocessor operation, models act as statistical predictors, performing thousands to millions of addition operations during the forward pass to predict the answer to 2+2.</p>
-<div id="9c381a8b" class="cell" data-execution_count="3">
+<div id="34518a30" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> codecarbon <span class="im">import</span> EmissionsTracker</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> transformers <span class="im">import</span> AutoTokenizer, AutoModelForCausalLM</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -255,17 +255,17 @@ Traditional Program → 4.49 µg CO₂e</code></pre>
 <span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Prompting a model → </span><span class="sc">{</span>model_emissions<span class="sc">:.2f}</span><span class="ss"> µg CO₂e"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>2 + 2 = 3.5 + 3.5 + 3.
-Prompting a model → 2858.07 µg CO₂e</code></pre>
+Prompting a model → 2843.18 µg CO₂e</code></pre>
 </div>
 </div>
 <div class="sidebar-note">
 <p>So, you probably notice that GPT2 has given a nonsensical answer. As mentioned earlier, GPT2 is more of an autocompletion engine than its successors which actually have the ability to process instructions. I’d chosen the problem 2+2 for this article believing that 2+2=4 would be such a common pattern in any training data set, that I could keep focus on environmental impact, allowing numerous other articles to show much better examples of where AI can get wrong answers. Apparently, the training data for many early models – I tried many besides GPT2 – don’t have enough examples of 2+2=4 to divulge that exact answer when prompted. Go figure!</p>
 </div>
 <p>This next cell shows that the difference in carbon emissions between calculating 2+2 in a traditional program and prompting GPT2 for the same problem is orders of magnitude difference in carbon emissions. Consider when looking at this calculation that GPT2 has ~1.5 billion parameters, but that GPT5 may have ~1.7 trillion parameters. This estimate puts GPT5 at roughly 1000 times the size of GPT2, which means it probably uses 100-1000 times the amount of energy for the same prompt. This why we have <a href="https://www.politico.com/news/2025/05/06/elon-musk-xai-memphis-gas-turbines-air-pollution-permits-00317582">air pollution situations that can be traced directly to power plants fueling data centers for AI.</a></p>
-<div id="cb05cc1a" class="cell" data-execution_count="4">
+<div id="1af84d3c" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Using GPT2 to answer 2+2 generates </span><span class="sc">{</span>model_emissions<span class="op">/</span>traditional_emissions<span class="sc">:.0f}</span><span class="ss"> times as much CO₂ as calculating 2+2 in Python."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Using GPT2 to answer 2+2 generates 637 times as much CO₂ as calculating 2+2 in Python.</code></pre>
+<pre><code>Using GPT2 to answer 2+2 generates 229 times as much CO₂ as calculating 2+2 in Python.</code></pre>
 </div>
 </div>
 <p>So, my argument is not to stop using AI. AI is already widely used and adopted. However, considering how widely AI is used and what its capabilities are, I think it is a smart decision to have AI use traditional programs as tooling, whether AI itself generates and uses those programs or humans provide those programs. Having AI delegate its weaker points to tooling, rather than trying to use AI as the only tool will help mitigate AI’s contribution to climate change.</p>

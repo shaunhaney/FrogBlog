@@ -14,8 +14,6 @@ website:
 format:
   html:
     title-block-banner: images/banner.jpg
-    theme:
-      - brand
     css:
       - frog.scss
       - styles.css
