@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://shaunhaney.github.io/index.html</loc>
+    <lastmod>2025-11-08T23:49:05.746Z</lastmod>
+  </url>
+  <url>
     <loc>https://shaunhaney.github.io/posts/2+2/index.html</loc>
-    <lastmod>2025-11-09T05:55:09.486Z</lastmod>
+    <lastmod>2025-11-09T06:06:31.686Z</lastmod>
   </url>
   <url>
     <loc>https://shaunhaney.github.io/about.html</loc>
     <lastmod>2025-10-26T23:22:45.034Z</lastmod>
   </url>
   <url>
-    <loc>https://shaunhaney.github.io/index.html</loc>
-    <lastmod>2025-11-08T23:49:05.746Z</lastmod>
+    <loc>https://shaunhaney.github.io/posts/2+2/index.quarto.html</loc>
+    <lastmod>2025-11-09T05:55:50.002Z</lastmod>
   </url>
 </urlset>

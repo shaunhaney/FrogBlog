@@ -26,7 +26,7 @@
 2 + 2 is pretty atomic in terms of operations. It can usually be written as approximately 4 statements in assembler, a language just one level above machine language, where you load 2 into 2 registers, perform an add operation, and store it in another register. Even on primitive processors, it takes nanoseconds and barely registers any measurable energy expenditure.<br>
 If you’re a computer scientist familiar with interpreters, you know that between assembler and Python, a lot more happens in between as the interface between Python and the machine has more layers of complexity and requires more energy.<br>
 The code segment below estimates the amount of energy required to run the statement <code>a=2+2</code> in Python.</p>
-<div id="09e93cb8" class="cell" data-execution_count="2">
+<div id="d961bff7" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> codecarbon <span class="im" style="color: #00769E;
@@ -92,11 +92,11 @@ background-color: null;
 font-style: inherit;"> µg CO₂e"</span>)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>2+2=4
-Traditional Program → 12.41 µg CO₂e</code></pre>
+Traditional Program → 14.72 µg CO₂e</code></pre>
 </div>
 </div>
 <p>As you might expect, asking a model to add 2+2 together takes quite a bit more energy, but how much exactly? In this segment, we calculate the forward pass through GPT2. GPT2 is a predecessor to the current GPT5 model. GPT2 acts more like autocomplete and does not process instructions in the same way that GPT3 and later models do. The reason I’ve chosen GPT2 is because it is small enough to run locally, yet still big enough to show a few orders of magnitude difference in carbon emmissions when compared with running a traditional program. With each new version of GPT, the models have generally grown, scaling with a multitude more parameters and thus more calculations. While a traditional program ultimately calculates 2+2 as a single microprocessor operation, models act as statistical predictors, performing thousands to millions of addition operations during the forward pass to predict the answer to 2+2.</p>
-<div id="34518a30" class="cell" data-execution_count="3">
+<div id="770b1a77" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> codecarbon <span class="im" style="color: #00769E;
@@ -213,14 +213,14 @@ background-color: null;
 font-style: inherit;"> µg CO₂e"</span>)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>2 + 2 = 3.5 + 3.5 + 3.
-Prompting a model → 2843.18 µg CO₂e</code></pre>
+Prompting a model → 2905.57 µg CO₂e</code></pre>
 </div>
 </div>
 <div class="sidebar-note">
 <p>So, you probably notice that GPT2 has given a nonsensical answer. As mentioned earlier, GPT2 is more of an autocompletion engine than its successors which actually have the ability to process instructions. I’d chosen the problem 2+2 for this article believing that 2+2=4 would be such a common pattern in any training data set, that I could keep focus on environmental impact, allowing numerous other articles to show much better examples of where AI can get wrong answers. Apparently, the training data for many early models – I tried many besides GPT2 – don’t have enough examples of 2+2=4 to divulge that exact answer when prompted. Go figure!</p>
 </div>
 <p>This next cell shows that the difference in carbon emissions between calculating 2+2 in a traditional program and prompting GPT2 for the same problem is orders of magnitude difference in carbon emissions. Consider when looking at this calculation that GPT2 has ~1.5 billion parameters, but that GPT5 may have ~1.7 trillion parameters. This estimate puts GPT5 at roughly 1000 times the size of GPT2, which means it probably uses 100-1000 times the amount of energy for the same prompt. This why we have <a href="https://www.politico.com/news/2025/05/06/elon-musk-xai-memphis-gas-turbines-air-pollution-permits-00317582">air pollution situations that can be traced directly to power plants fueling data centers for AI.</a></p>
-<div id="1af84d3c" class="cell" data-execution_count="4">
+<div id="458bafea" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
@@ -235,7 +235,7 @@ font-style: inherit;">:.0f}</span><span class="ss" style="color: #20794D;
 background-color: null;
 font-style: inherit;"> times as much CO₂ as calculating 2+2 in Python."</span>)</span></code></pre></div></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Using GPT2 to answer 2+2 generates 229 times as much CO₂ as calculating 2+2 in Python.</code></pre>
+<pre><code>Using GPT2 to answer 2+2 generates 197 times as much CO₂ as calculating 2+2 in Python.</code></pre>
 </div>
 </div>
 <p>So, my argument is not to stop using AI. AI is already widely used and adopted. However, considering how widely AI is used and what its capabilities are, I think it is a smart decision to have AI use traditional programs as tooling, whether AI itself generates and uses those programs or humans provide those programs. Having AI delegate its weaker points to tooling, rather than trying to use AI as the only tool will help mitigate AI’s contribution to climate change.</p>
@@ -248,6 +248,234 @@ font-style: inherit;"> times as much CO₂ as calculating 2+2 in Python."</span>
   <category>Conservation</category>
   <category>Ethics</category>
   <guid>https://shaunhaney.github.io/posts/2+2/</guid>
+  <pubDate>Tue, 04 Nov 2025 08:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>2 + 2: A Story of Why We Shouldn’t Use AI For Everything</title>
+  <dc:creator>Shaun Haney</dc:creator>
+  <link>https://shaunhaney.github.io/posts/2+2/index.quarto.html</link>
+  <description><![CDATA[ 
+
+
+
+
+
+<p>A few days ago, a former coworker on LinkedIn posed the question, “Why are we using AI to generate code? Why don’t let AI be the code?” A lot of our use of agentic AI does just that, acting on instructions either directly from us in the form of prompts or from its internal data. But I would like to look at this question from a much simpler perspective to argue that there are some tasks handled so much more efficiently by traditional programs and that we should never be handing those tasks directly to AI. When I speak of AI in this post, I am referring to LLMs like GPT and more generally, transformers.</p>
+<p>I’ve decided to show my answer to this question by comparing the carbon footprint of calculating 2+2 in a traditional computer program to asking a model to do the job. I use a class called EmissionsTracker from a library called CodeCarbon to track how much compute power it takes to run each scenario. The indented code after the statement <code>with EmissionsTracker as tracker:</code> is what is being measured.<br>
+2 + 2 is pretty atomic in terms of operations. It can usually be written as approximately 4 statements in assembler, a language just one level above machine language, where you load 2 into 2 registers, perform an add operation, and store it in another register. Even on primitive processors, it takes nanoseconds and barely registers any measurable energy expenditure.<br>
+If you’re a computer scientist familiar with interpreters, you know that between assembler and Python, a lot more happens in between as the interface between Python and the machine has more layers of complexity and requires more energy.<br>
+The code segment below estimates the amount of energy required to run the statement <code>a=2+2</code> in Python.</p>
+<div id="fac4516e" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> codecarbon <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> EmissionsTracker</span>
+<span id="cb1-2"></span>
+<span id="cb1-3">a <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span></span>
+<span id="cb1-4"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Create the tracker</span></span>
+<span id="cb1-5"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">with</span> EmissionsTracker() <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> tracker:</span>
+<span id="cb1-6"></span>
+<span id="cb1-7">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Simple statement that calculates 2+2 and stores it in a variable</span></span>
+<span id="cb1-8">    a<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb1-9"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"2+2=</span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>a<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"</span>)</span>
+<span id="cb1-10"></span>
+<span id="cb1-11">traditional_emissions <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> tracker.final_emissions_data.emissions <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1_000_000_000</span></span>
+<span id="cb1-12"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Traditional Program → </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>traditional_emissions<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> µg CO₂e"</span>)</span></code></pre></div></div>
+</div>
+<p>As you might expect, asking a model to add 2+2 together takes quite a bit more energy, but how much exactly? In this segment, we calculate the forward pass through GPT2. GPT2 is a predecessor to the current GPT5 model. GPT2 acts more like autocomplete and does not process instructions in the same way that GPT3 and later models do. The reason I’ve chosen GPT2 is because it is small enough to run locally, yet still big enough to show a few orders of magnitude difference in carbon emmissions when compared with running a traditional program. With each new version of GPT, the models have generally grown, scaling with a multitude more parameters and thus more calculations. While a traditional program ultimately calculates 2+2 as a single microprocessor operation, models act as statistical predictors, performing thousands to millions of addition operations during the forward pass to predict the answer to 2+2.</p>
+<div id="17dfe172" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> codecarbon <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> EmissionsTracker</span>
+<span id="cb2-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> transformers <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> AutoTokenizer, AutoModelForCausalLM</span>
+<span id="cb2-3"></span>
+<span id="cb2-4">model_name <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"gpt2"</span>                 </span>
+<span id="cb2-5">tokenizer <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> AutoTokenizer.from_pretrained(model_name)</span>
+<span id="cb2-6">model <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> AutoModelForCausalLM.from_pretrained(model_name)</span>
+<span id="cb2-7"></span>
+<span id="cb2-8"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ---- Track emissions for the inference ----</span></span>
+<span id="cb2-9">prompt <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2 + 2 ="</span></span>
+<span id="cb2-10"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">with</span> EmissionsTracker() <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> tracker:</span>
+<span id="cb2-11">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># inputs need to first be tokenized</span></span>
+<span id="cb2-12">    inputs <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> tokenizer(prompt, return_tensors<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"pt"</span>)</span>
+<span id="cb2-13">    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Forward pass through GPT2</span></span>
+<span id="cb2-14">    outputs <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> model.generate(</span>
+<span id="cb2-15">        <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span>inputs,</span>
+<span id="cb2-16">        max_new_tokens<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>,</span>
+<span id="cb2-17">        do_sample<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span>,</span>
+<span id="cb2-18">        temperature<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0</span></span>
+<span id="cb2-19">    )</span>
+<span id="cb2-20"></span>
+<span id="cb2-21">    new_text <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> tokenizer.decode(</span>
+<span id="cb2-22">        outputs[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>][inputs.input_ids.shape[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]:],</span>
+<span id="cb2-23">        skip_special_tokens<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span></span>
+<span id="cb2-24">    )</span>
+<span id="cb2-25"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"2 + 2 ="</span>, new_text.strip())</span>
+<span id="cb2-26"></span>
+<span id="cb2-27"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># ---- Convert to micrograms CO₂e for readability ----</span></span>
+<span id="cb2-28">model_emissions <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> tracker.final_emissions_data.emissions <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1_000_000_000</span></span>
+<span id="cb2-29"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Prompting a model → </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>model_emissions<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.2f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> µg CO₂e"</span>)</span></code></pre></div></div>
+</div>
+<div class="sidebar-note">
+<p>So, you probably notice that GPT2 has given a nonsensical answer. As mentioned earlier, GPT2 is more of an autocompletion engine than its successors which actually have the ability to process instructions. I’d chosen the problem 2+2 for this article believing that 2+2=4 would be such a common pattern in any training data set, that I could keep focus on environmental impact, allowing numerous other articles to show much better examples of where AI can get wrong answers. Apparently, the training data for many early models – I tried many besides GPT2 – don’t have enough examples of 2+2=4 to divulge that exact answer when prompted. Go figure!</p>
+</div>
+<p>This next cell shows that the difference in carbon emissions between calculating 2+2 in a traditional program and prompting GPT2 for the same problem is orders of magnitude difference in carbon emissions. Consider when looking at this calculation that GPT2 has ~1.5 billion parameters, but that GPT5 may have ~1.7 trillion parameters. This estimate puts GPT5 at roughly 1000 times the size of GPT2, which means it probably uses 100-1000 times the amount of energy for the same prompt. This why we have <a href="https://www.politico.com/news/2025/05/06/elon-musk-xai-memphis-gas-turbines-air-pollution-permits-00317582">air pollution situations that can be traced directly to power plants fueling data centers for AI.</a></p>
+<div id="60159ac1" class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;">f"Using GPT2 to answer 2+2 generates </span><span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">{</span>model_emissions<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">/</span>traditional_emissions<span class="sc" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">:.0f}</span><span class="ss" style="color: #20794D;
+background-color: null;
+font-style: inherit;"> times as much CO₂ as calculating 2+2 in Python."</span>)</span></code></pre></div></div>
+</div>
+<p>So, my argument is not to stop using AI. AI is already widely used and adopted. However, considering how widely AI is used and what its capabilities are, I think it is a smart decision to have AI use traditional programs as tooling, whether AI itself generates and uses those programs or humans provide those programs. Having AI delegate its weaker points to tooling, rather than trying to use AI as the only tool will help mitigate AI’s contribution to climate change.</p>
+
+
+
+ ]]></description>
+  <category>AI</category>
+  <category>Machine Learning</category>
+  <category>Conservation</category>
+  <category>Ethics</category>
+  <guid>https://shaunhaney.github.io/posts/2+2/index.quarto.html</guid>
   <pubDate>Tue, 04 Nov 2025 08:00:00 GMT</pubDate>
 </item>
 </channel>
